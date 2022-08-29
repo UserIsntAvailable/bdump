@@ -3,8 +3,9 @@
 
     "name": "TabsDumper",
     "description": "Dumps all the current open tabs to a json file.",
+    "homepage_url": "https://github.com/UserIsntAvailable/taps-dumper",
     "version": "0.0.1",
 
-    "icons": { "64": "icons/bin.png" },
+    "icons": { "64": "icons/bin-64.png", "96": "icons/bin-96.png" },
 }
 
