@@ -1,0 +1,17 @@
+#box {
+    width: 8rem;
+    font-family: "Fira Sans", serif;
+    text-align: center;
+}
+
+#box-title {
+    font-style: bold;
+    font-size: 1.0em;
+    user-select: none;
+}
+
+#box-button {
+    font-size: 0.8em;
+    margin-top: 0.3rem;
+    cursor: pointer;
+}
