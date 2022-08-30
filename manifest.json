@@ -1,16 +1,16 @@
 {
     "manifest_version": 2,
 
-    "name": "TabsDumper",
-    "description": "Dumps all the current open tabs to a json file.",
-    "homepage_url": "https://github.com/UserIsntAvailable/tabs-dumper",
+    "name": "FirefoxDumper",
+    "description": "Dumps information about current open tabs or bookmarks.",
+    "homepage_url": "https://github.com/UserIsntAvailable/firefox-dumper",
     "version": "0.1.0",
 
     "icons": { "64": "icons/bin-64.png", "96": "icons/bin-96.png" },
-    "permissions": ["tabs", "downloads"],
+    "permissions": ["tabs", "bookmarks", "downloads"],
     "browser_action": {
         "default_icon": "icons/bin-32.png",
-        "default_title": "TabsDumper",
+        "default_title": "FirefoxDumper",
         "default_popup": "toolbar/main.html"
     }
 }

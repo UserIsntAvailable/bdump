@@ -10,7 +10,8 @@
     user-select: none;
 }
 
-#box-button {
+#box-tabs-button,
+#box-bookmarks-button {
     font-size: 0.8em;
     margin-top: 0.3rem;
     cursor: pointer;
