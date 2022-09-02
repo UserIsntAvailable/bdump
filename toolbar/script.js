@@ -1,9 +1,10 @@
 
 const tabsButton = document.getElementById("box-tabs-button");
 tabsButton.onclick = async (_) => {
-    // TODO: Only get for current window option.
     // TODO: Select what properties to get.
-    const tabs = await browser.tabs.query({});
+    const tabsCheckbox = document.getElementById("box-tabs-checkbox");
+    const query = tabsCheckbox.checked ? { currentWindow: true } : {}
+    const tabs = await browser.tabs.query(query);
     const newTabs = tabs.map((value) => { return { title: value.title, url: value.url } });
     const tabsJson = JSON.stringify({ tabs: newTabs }, null, 2);
 

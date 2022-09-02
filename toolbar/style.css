@@ -1,5 +1,5 @@
 #box {
-    width: 8rem;
+    width: 12rem;
     font-family: "Fira Sans", serif;
     text-align: center;
 }
@@ -15,4 +15,13 @@
     font-size: 0.8em;
     margin-top: 0.3rem;
     cursor: pointer;
+}
+
+#box-tabs-checkbox {
+    margin-top: 0.4rem;
+}
+
+#box-tabs-checkbox-label {
+    font-size: 0.9em;
+    user-select: none;
 }
