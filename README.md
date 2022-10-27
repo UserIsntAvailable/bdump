@@ -1,11 +1,12 @@
-# FirefoxDumper
+# bdump
 
 Dumps information about current open tabs or bookmarks.
 
 ## Others Browsers
 
-~~The extension should work fine with others browsers if you are already using 
-an up to date one.~~
+Tested with `Firefox`.
 
-Google Chrome uses `chrome` instead of browser, and if I want to use promises
-I need to have `manifest_version=3+`.
+As far as I know, this should work on any other `modern` browser, but `chrome`.
+`Google Chrome` uses `chrome` instead of `browser` for the extension global
+object; It also doesn't allow `promises`; The manifest_version should be set
+to 3 to allow them ( or just refactor the code, to not use them ).

@@ -1,16 +1,16 @@
 {
     "manifest_version": 2,
 
-    "name": "FirefoxDumper",
+    "name": "bdump",
     "description": "Dumps information about current open tabs or bookmarks.",
-    "homepage_url": "https://github.com/UserIsntAvailable/firefox-dumper",
+    "homepage_url": "https://github.com/UserIsntAvailable/bdump",
     "version": "0.1.0",
 
     "icons": { "64": "icons/bin-64.png", "96": "icons/bin-96.png" },
     "permissions": ["tabs", "bookmarks", "downloads"],
     "browser_action": {
         "default_icon": "icons/bin-32.png",
-        "default_title": "FirefoxDumper",
+        "default_title": "bdump",
         "default_popup": "toolbar/main.html"
     }
 }
