@@ -11,7 +11,7 @@
     "browser_action": {
         "default_icon": "icons/bin-32.png",
         "default_title": "bdump",
-        "default_popup": "toolbar/main.html"
+        "default_popup": "src/main.html"
     }
 }
 
