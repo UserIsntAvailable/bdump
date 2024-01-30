@@ -1,55 +1,63 @@
-
 const tabsButton = document.getElementById("box-tabs-button");
 tabsButton.onclick = async (_) => {
-    // TODO: Select what properties to get.
+    // TODO: Be able to select what properties to query?
     const tabsCheckbox = document.getElementById("box-tabs-checkbox");
-    const query = tabsCheckbox.checked ? { currentWindow: true } : {}
+    const query = tabsCheckbox.checked ? { currentWindow: true } : {};
     const tabs = await browser.tabs.query(query);
-    const newTabs = tabs.map((value) => { return { title: value.title, url: value.url } });
-    const tabsJson = JSON.stringify({ tabs: newTabs }, null, 2);
 
-    downloadJson(tabsJson, "tabs");
-}
+    const newTabs = tabs.map((value) => {
+        return { title: value.title, url: value.url };
+    });
+
+    downloadJson(JSON.stringify({ tabs: newTabs }, null, 2), "tabs");
+};
 
 const bookmarksButton = document.getElementById("box-bookmarks-button");
 bookmarksButton.onclick = async (_) => {
     const bTreeNode = (await browser.bookmarks.getTree())[0];
 
     // Traverses a BookmarkTreeNode removing irrelevant information.
-    let cleanBookmarkTreeNode = (node) => {
+    const cleanBookmarkTreeNode = (node) => {
         const children = node?.children;
         const type = node.type;
         const newNode = {
             title: node.title,
             type: type,
             url: type === "folder" ? undefined : node.url,
-            children: children
-        }
+            children: children,
+        };
 
         for (let i = 0; i < children?.length; i++) {
             newNode.children[i] = cleanBookmarkTreeNode(children[i]);
         }
 
         return newNode;
-    }
+    };
 
-    // FIX: Maybe I should include the root node to follow the API?
-    let newTreeNode = cleanBookmarkTreeNode(bTreeNode).children; // ignoring the root node.
-    const bookmarksJson = JSON.stringify({ bookmarks: newTreeNode }, null, 2);
+    // TODO: Include the `root` node to follow the API?
+    const treeNode = cleanBookmarkTreeNode(bTreeNode).children; // ignoring the root node.
 
-    downloadJson(bookmarksJson, "bookmarks");
-}
+    downloadJson(JSON.stringify({ bookmarks: treeNode }, null, 2), "bookmarks");
+};
 
-function downloadJson(json, namePrefix) {
-    const url = URL.createObjectURL(new Blob([json], { type: "application/json;charset=utf-8" }));
+// TODO: Use `window.showSaveFilePicker()` if it ever gets stabilized...
 
-    // https://stackoverflow.com/questions/13405129/create-and-save-a-file-with-javascript/53864791#53864791
-    const a = document.createElement("a");
-    a.href = url;
-    // FIX: For now just appending epoch timestamp.
-    a.download = `${namePrefix}-dump-${Date.now()}.json`;
-    document.body.appendChild(a);
-    a.click();
+// https://stackoverflow.com/questions/13405129/create-and-save-a-file-with-javascript/53864791#53864791
+const downloadJson = (json, namePrefix) => {
+    const url = URL.createObjectURL(
+        new Blob([json], { type: "application/json;charset=utf-8" }),
+    );
 
-    setTimeout(() => { document.body.removeChild(a); window.URL.revokeObjectURL(url); }, 0);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = `${namePrefix}-dump-${Date.now()}.json`;
+
+    // FIX: This could be problematic depending on users preferences.
+    link.click();
+
+    setTimeout(() => {
+        link.remove();
+        URL.revokeObjectURL(url);
+    }, 0);
 }
