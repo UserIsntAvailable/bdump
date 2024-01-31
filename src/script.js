@@ -2,9 +2,9 @@ const tabsButton = document.getElementById("box-tabs-button");
 tabsButton.onclick = async (_) => {
     // TODO: Be able to select what properties to query?
     const tabsCheckbox = document.getElementById("box-tabs-checkbox");
-    const query = tabsCheckbox.checked ? { currentWindow: true } : {};
-    const tabs = await browser.tabs.query(query);
+    const query = { currentWindow: tabsCheckbox.checked };
 
+    const tabs = await browser.tabs.query(query);
     const newTabs = tabs.map((value) => {
         return { title: value.title, url: value.url };
     });
@@ -35,9 +35,9 @@ bookmarksButton.onclick = async (_) => {
     };
 
     // TODO: Include the `root` node to follow the API?
-    const treeNode = cleanBookmarkTreeNode(bTreeNode).children; // ignoring the root node.
+    const newTreeNode = cleanBookmarkTreeNode(bTreeNode).children; // ignoring the root node.
 
-    downloadJson(JSON.stringify({ bookmarks: treeNode }, null, 2), "bookmarks");
+    downloadJson(JSON.stringify({ bookmarks: newTreeNode }, null, 2), "bookmarks");
 };
 
 // TODO: Use `window.showSaveFilePicker()` if it ever gets stabilized...

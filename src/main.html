@@ -1,18 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="style.css" />
-        <script src="script.js" defer></script>
-    </head>
-    <body>
-        <div id="box">
-            <div id="box-title">bdump</div>
-            <button id="box-tabs-button">Get Tabs</button>
-            <button id="box-bookmarks-button">Get Bookmarks</button><br>
-            <input id="box-tabs-checkbox" type="checkbox">
-            <label id="box-tabs-checkbox-label" for="box-tabs-checkbox">Only tabs from this window</label>
-        </div>
-    </body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <h1>bdump</h1>
+      <section>
+        <button id="box-tabs-button">Get Tabs</button>
+        <button id="box-bookmarks-button">Get Bookmarks</button>
+      </section>
+      <div>
+        <input id="box-tabs-checkbox" type="checkbox" />
+        <label for="box-tabs-checkbox"
+          >Only <strong>tabs</strong> from this window</label
+        >
+      </div>
+    </main>
+  </body>
 </html>
-
